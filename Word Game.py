@@ -8,31 +8,38 @@ def start_game():
     KeyWord = random.choice(KeyWordList)
     Guesses = int(0)
     Hint = ""
+    GuessesRemaining = 10
     for letter in KeyWord:
         Hint += " _"
     while TestWord != KeyWord:
-        print (f"Your hint is:{Hint}")
-        TestWord = input("Input a word to guess! ")
-        TestWord = TestWord.lower()
-        if len(TestWord) < len(KeyWord):
-            print ("That word is too short")
-        elif len(TestWord) > len(KeyWord):
-            print ("That word is too long")
-        else:
-            Hint = ""
-            for i, letter in enumerate(TestWord):
-                for i2, letter2 in enumerate(KeyWord):
-                    if i == i2 and letter ==  letter2:
-                        letter = letter.upper()
-                        Hint += f" {letter}"
-                        break
-                else:
-                    if letter in KeyWord:
-                        Hint += f" {letter}"
+        if GuessesRemaining > 0:
+            print (f"Your hint is:{Hint} you have {GuessesRemaining} guesses left.")
+            TestWord = input("Input a word to guess! ")
+            TestWord = TestWord.lower()
+            if len(TestWord) < len(KeyWord):
+                print ("That word is too short")
+            elif len(TestWord) > len(KeyWord):
+                print ("That word is too long")
+            else:
+                Hint = ""
+                for i, letter in enumerate(TestWord):
+                    for i2, letter2 in enumerate(KeyWord):
+                        if i == i2 and letter ==  letter2:
+                            letter = letter.upper()
+                            Hint += f" {letter}"
+                            break
                     else:
-                        Hint +=" _"
-        Guesses = Guesses + 1
-    print ("Congrats, you win!\n")
+                        if letter in KeyWord:
+                            Hint += f" {letter}"
+                        else:
+                            Hint +=" _"
+            Guesses += 1
+            GuessesRemaining -= 1
+        else:
+            print ("You ran out of guesses!\n")
+            break
+    if TestWord == KeyWord:
+        print ("Congrats, you win!\n")
     if Guesses <2:
         print (f"You made {Guesses} guess.")
     else:
@@ -42,7 +49,7 @@ def start_game():
         replay = replay.lower()
         if replay == "y":
             start_game()
-        elif replay == "n"
+        elif replay == "n":
             break
         else:
             print("That is not an option, try again")
