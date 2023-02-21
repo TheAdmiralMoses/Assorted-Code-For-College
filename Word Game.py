@@ -9,7 +9,7 @@ def start_game():
     Guesses = int(0)
     Hint = ""
     for letter in KeyWord:
-        Hint = Hint + " _"
+        Hint += " _"
     while TestWord != KeyWord:
         print (f"Your hint is:{Hint}")
         TestWord = input("Input a word to guess! ")
@@ -30,7 +30,7 @@ def start_game():
                     if letter in KeyWord:
                         Hint += f" {letter}"
                     else:
-                        Hint = Hint + " _"
+                        Hint +=" _"
         Guesses = Guesses + 1
     print ("Congrats, you win!\n")
     if Guesses <2:
@@ -39,9 +39,10 @@ def start_game():
         print (f"You made {Guesses} guesses.")
     while True:
         replay = input("Play again? Type Y or N")
-        if replay == "Y":
+        replay = replay.lower()
+        if replay == "y":
             start_game()
-        elif replay == "N":
+        elif replay == "n"
             break
         else:
             print("That is not an option, try again")
