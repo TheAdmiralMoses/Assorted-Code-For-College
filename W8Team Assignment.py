@@ -9,7 +9,7 @@ def commitment_script():
         else:
             print (letter.lower(), end='')
     print ()
-def word_scrip()
+def word_script():
     quote = "In coming days, it will not be possible to survive spiritually without the guiding, directing, comforting, and constant influence of the Holy Ghost."
     cont = "yes"
     while True:
