@@ -28,13 +28,13 @@ def start_shopping():
                     break
         elif menu == 2:
             print("Your cart contains:")
-            for item_index, cart_item in enumerate(cart):
-                for price_index, item_price in enumerate(item_prices):
-                    for count_index, count in enumerate(item_count):
-                        if item_index == price_index == count_index:
-                            item_index += 1
-                            print(f"{item_index}. {cart_item} ${item_price:.2f} x{count}")
-                            item_index -= 1
+            for index in range(len(cart)):
+                item_price = item_prices[index]
+                count = item_count[index]
+                item = cart[index]
+                index += 1
+                print(f"{index}. {item} ${item_price:.2f} x{count}")
+                index -= 1
             print()
         elif menu == 3:
             while True:
@@ -58,29 +58,29 @@ def start_shopping():
         elif menu == 4:
             cart_total = float(0)
             item_total = float(0)
-            for price_index, item_price in enumerate(item_prices):
-                for count_index, count in enumerate(item_count):
-                    if count_index == price_index:
-                        item_total = item_price * count
-                        cart_total += item_total
+            for index in range(len(item_prices)):
+                count = item_count[index]
+                item_price = item_prices[index]
+                item_total = item_price * count
+                cart_total += item_total
             print(f"\nThe total of the items in your cart is ${cart_total:.2f}. \n")
         elif menu == 5:
             tax = float(input("What is the sales tax %? "))
             tax2 = tax * 0.01
             subtotal = float(0)
             print("These are the items in your cart:")
-            for item_index, cart_item in enumerate(cart):
-                for price_index, item_price in enumerate(item_prices):
-                    for count_index, count in enumerate(item_count):
-                        if item_index == price_index == count_index:
-                            item_index += 1
-                            print(f"{item_index}. {cart_item} ${item_price:.2f} x{count}")
-                            item_index -= 1
-            for price_index, item_price in enumerate(item_prices):
-                for count_index, count in enumerate(item_count):
-                    if count_index == price_index:
-                        item_total = item_price * count
-                        subtotal += item_total
+            for index in range(len(cart)):
+                item_price = item_prices[index]
+                count = item_count[index]
+                item = cart[index]
+                index += 1
+                print(f"{index}. {item} ${item_price:.2f} x{count}")
+                index -= 1
+            for index in range(len(item_prices)):
+                item_price = item_prices[index]
+                count = item_count[index]
+                item_total = item_price * count
+                subtotal += item_total
             print(f"\nYour subtotal is ${subtotal:.2f}\n")
             stax = subtotal * tax2
             print(f"Your sales tax is ${stax:.2f}")
